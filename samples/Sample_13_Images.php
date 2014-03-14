@@ -1,16 +1,31 @@
 <?php
+/**
+ * Image creation
+ */
+
 // Init
 error_reporting(E_ALL);
 define('EOL', (PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
 require_once '../Classes/PHPWord.php';
 
-// New Word Document
-echo date('H:i:s') , ' Create new PHPWord object' , EOL;
+// New Word document
+echo date('H:i:s'), " Create new PHPWord object", EOL;
 $PHPWord = new PHPWord();
+
+// Begin code
 $section = $PHPWord->createSection();
-$header = array('size' => 16, 'bold' => true);
-//1.Use EastAisa FontStyle
-$section->addText('中文楷体样式测试',array('name' => '楷体', 'size' => 16, 'color' => '1B2232'));
+$section->addText('Local image without any styles:');
+$section->addImage('resources/_mars.jpg');
+$section->addTextBreak(2);
+//
+$section->addText('Local image with styles:');
+$section->addImage('resources/_earth.jpg', array('width' => 210, 'height' => 210, 'align' => 'center'));
+$section->addTextBreak(2);
+
+$source = 'http://php.net/images/logos/php-med-trans-light.gif';
+$section->addText("Remote image from: {$source}");
+$section->addMemoryImage($source);
+// End code
 
 // Save file
 $name = basename(__FILE__, '.php');

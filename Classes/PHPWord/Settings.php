@@ -20,71 +20,46 @@
  *
  * @category   PHPWord
  * @package    PHPWord
- * @copyright  Copyright (c) 2013 PHPWord
+ * @copyright  Copyright (c) 2014 PHPWord
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    0.7.0
  */
 
 /**
- * PHPWord_Style_Row
+ * PHPWord_Settings
  */
-class PHPWord_Style_Row
+class PHPWord_Settings
 {
-
     /**
-     * Repeat table row on every new page
+     * Compatibility option for XMLWriter
      *
-     * @var bool
+     * @var boolean
      */
-    private $_tblHeader = false;
+    private static $_xmlWriterCompatibility = true;
 
     /**
-     * Table row cannot break across pages
+     * Set the compatibility option used by the XMLWriter
      *
-     * @var bool
+     * @param boolean $compatibility  This sets the setIndent and setIndentString for better compatibility
+     * @return  boolean Success or failure
      */
-    private $_cantSplit = false;
+    public static function setCompatibility($compatibility)
+    {
+        if (is_bool($compatibility)) {
+            self::$_xmlWriterCompatibility = $compatibility;
+            return true;
+        }
+        return false;
+    } // function setCompatibility()
+
 
     /**
-     * Create a new row style
+     * Return the compatibility option used by the XMLWriter
+     *
+     * @return boolean Compatibility
      */
-    public function __construct()
+    public static function getCompatibility()
     {
-    }
-
-    /**
-     * Set style value
-     */
-    public function setStyleValue($key, $value)
-    {
-        $this->$key = $value;
-    }
-
-    public function setTblHeader($pValue = false)
-    {
-        if (!is_bool($pValue)) {
-            $pValue = false;
-        }
-        $this->_tblHeader = $pValue;
-        return $this;
-    }
-
-    public function getTblHeader()
-    {
-        return $this->_tblHeader;
-    }
-
-    public function setCantSplit($pValue = false)
-    {
-        if (!is_bool($pValue)) {
-            $pValue = false;
-        }
-        $this->_cantSplit = $pValue;
-        return $this;
-    }
-
-    public function getCantSplit()
-    {
-        return $this->_cantSplit;
-    }
+        return self::$_xmlWriterCompatibility;
+    } // function getCompatibility()
 }

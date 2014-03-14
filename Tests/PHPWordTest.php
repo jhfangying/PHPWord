@@ -1,16 +1,19 @@
 <?php
 namespace PHPWord\Tests;
 
-use PHPUnit_Framework_TestCase;
 use PHPWord;
 use PHPWord_DocumentProperties;
 use PHPWord_Section;
 use PHPWord_Style;
 
 /**
- * @covers PHPWord
+ * Class PHPWordTest
+ *
+ * @package PHPWord\Tests
+ * @covers  PHPWord
+ * @runTestsInSeparateProcesses
  */
-class PHPWordTest extends PHPUnit_Framework_TestCase
+class PHPWordTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var PHPWord

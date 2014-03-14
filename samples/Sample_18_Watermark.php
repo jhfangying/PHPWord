@@ -1,16 +1,25 @@
 <?php
+/**
+ * Generic template for creating PHPWord samples
+ */
+
 // Init
 error_reporting(E_ALL);
 define('EOL', (PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
 require_once '../Classes/PHPWord.php';
 
-// New Word Document
-echo date('H:i:s') , ' Create new PHPWord object' , EOL;
+// New Word document
+echo date('H:i:s'), " Create new PHPWord object", EOL;
 $PHPWord = new PHPWord();
+
+// Begin code
+
 $section = $PHPWord->createSection();
-$header = array('size' => 16, 'bold' => true);
-//1.Use EastAisa FontStyle
-$section->addText('中文楷体样式测试',array('name' => '楷体', 'size' => 16, 'color' => '1B2232'));
+$header = $section->createHeader();
+$header->addWatermark('resources/_earth.jpg', array('marginTop' => 200, 'marginLeft' => 55));
+$section->addText('The header reference to the current section includes a watermark image.');
+
+// End code
 
 // Save file
 $name = basename(__FILE__, '.php');
