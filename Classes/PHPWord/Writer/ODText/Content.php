@@ -22,7 +22,7 @@
  * @package    PHPWord
  * @copyright  Copyright (c) 2014 PHPWord
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    0.7.0
+ * @version    0.8.0
  */
 
 /**
@@ -33,9 +33,9 @@ class PHPWord_Writer_ODText_Content extends PHPWord_Writer_ODText_WriterPart
     /**
      * Write content file to XML format
      *
-     * @param    PHPWord $pPHPWord
-     * @return    string                        XML Output
-     * @throws    Exception
+     * @param   PHPWord $pPHPWord
+     * @return  string XML Output
+     * @throws  Exception
      */
     public function writeContent(PHPWord $pPHPWord = null)
     {
@@ -254,24 +254,24 @@ class PHPWord_Writer_ODText_Content extends PHPWord_Writer_ODText_WriterPart
                     } elseif ($element instanceof PHPWord_Section_TextBreak) {
                         $this->_writeTextBreak($objWriter);
                     } elseif ($element instanceof PHPWord_Section_Link) {
-                        $this->writeUnsupportedElement($objWriter, 'link');
+                        $this->writeUnsupportedElement($objWriter, 'Link');
                     } elseif ($element instanceof PHPWord_Section_Title) {
-                        $this->writeUnsupportedElement($objWriter, 'title');
+                        $this->writeUnsupportedElement($objWriter, 'Title');
                     } elseif ($element instanceof PHPWord_Section_PageBreak) {
-                        $this->writeUnsupportedElement($objWriter, 'page break');
+                        $this->writeUnsupportedElement($objWriter, 'Page Break');
                     } elseif ($element instanceof PHPWord_Section_Table) {
-                        $this->writeUnsupportedElement($objWriter, 'table');
+                        $this->writeUnsupportedElement($objWriter, 'Table');
                     } elseif ($element instanceof PHPWord_Section_ListItem) {
-                        $this->writeUnsupportedElement($objWriter, 'list item');
+                        $this->writeUnsupportedElement($objWriter, 'List Item');
                     } elseif ($element instanceof PHPWord_Section_Image ||
                     $element instanceof PHPWord_Section_MemoryImage) {
-                        $this->writeUnsupportedElement($objWriter, 'image');
+                        $this->writeUnsupportedElement($objWriter, 'Image');
                     } elseif ($element instanceof PHPWord_Section_Object) {
-                        $this->writeUnsupportedElement($objWriter, 'object');
+                        $this->writeUnsupportedElement($objWriter, 'Object');
                     } elseif ($element instanceof PHPWord_TOC) {
                         $this->writeUnsupportedElement($objWriter, 'TOC');
                     } else {
-                        $this->writeUnsupportedElement($objWriter, 'other');
+                        $this->writeUnsupportedElement($objWriter, 'Element');
                     }
                 }
 
@@ -344,9 +344,9 @@ class PHPWord_Writer_ODText_Content extends PHPWord_Writer_ODText_WriterPart
     /**
      * Write TextRun section
      *
-     * @param   PHPWord_Shared_XMLWriter    $objWriter
-     * @param   PHPWord_Section_TextRun     $textrun
-     * @todo    Enable all other section types
+     * @param PHPWord_Shared_XMLWriter $objWriter
+     * @param PHPWord_Section_TextRun $textrun
+     * @todo Enable all other section types
      */
     protected function _writeTextRun(PHPWord_Shared_XMLWriter $objWriter = null, PHPWord_Section_TextRun $textrun)
     {
@@ -364,6 +364,8 @@ class PHPWord_Writer_ODText_Content extends PHPWord_Writer_ODText_WriterPart
 
     /**
      * Write TextBreak
+     *
+     * @param PHPWord_Shared_XMLWriter $objWriter
      */
     protected function _writeTextBreak(PHPWord_Shared_XMLWriter $objWriter = null)
     {
@@ -372,18 +374,27 @@ class PHPWord_Writer_ODText_Content extends PHPWord_Writer_ODText_WriterPart
         $objWriter->endElement();
     }
 
+    // @codeCoverageIgnoreStart
+    /**
+     * Write end section
+     *
+     * @param PHPWord_Shared_XMLWriter $objWriter
+     * @param PHPWord_Section $section
+     */
     private function _writeEndSection(PHPWord_Shared_XMLWriter $objWriter = null, PHPWord_Section $section = null)
     {
     }
 
     /**
-     * Dummy function just to make all samples produce ODT
+     * Write section
      *
-     * @todo Create the real function
+     * @param PHPWord_Shared_XMLWriter $objWriter
+     * @param PHPWord_Section $section
      */
     private function _writeSection(PHPWord_Shared_XMLWriter $objWriter = null, PHPWord_Section $section = null)
     {
     }
+    // @codeCoverageIgnoreEnd
 
     /**
      * Write unsupported element
@@ -394,7 +405,7 @@ class PHPWord_Writer_ODText_Content extends PHPWord_Writer_ODText_WriterPart
     private function writeUnsupportedElement($objWriter, $element)
     {
         $objWriter->startElement('text:p');
-        $objWriter->writeRaw("Cannot write content. This version of PHPWord has not supported {$element} element in ODText.");
+        $objWriter->writeRaw("{$element}");
         $objWriter->endElement();
     }
 }

@@ -22,7 +22,7 @@
  * @package    PHPWord
  * @copyright  Copyright (c) 2014 PHPWord
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    0.7.0
+ * @version    0.8.0
  */
 
 /** PHPWORD_BASE_PATH */
@@ -33,6 +33,8 @@ if (!defined('PHPWORD_BASE_PATH')) {
     PHPWord_Autoloader::Register();
 }
 // @codeCoverageIgnoreEnd
+
+use PhpOffice\PhpWord\Exceptions\Exception;
 
 /**
  * PHPWord
@@ -186,8 +188,8 @@ class PHPWord
     /**
      * Adds a paragraph style definition to styles.xml
      *
-     * @param $styleName string
-     * @param $styles array
+     * @param string $styleName
+     * @param array $styles
      */
     public function addParagraphStyle($styleName, $styles)
     {
@@ -197,8 +199,9 @@ class PHPWord
     /**
      * Adds a font style definition to styles.xml
      *
-     * @param $styleName string
-     * @param $styles array
+     * @param string $styleName
+     * @param array $styleFont
+     * @param array $styleParagraph
      */
     public function addFontStyle($styleName, $styleFont, $styleParagraph = null)
     {
@@ -208,8 +211,9 @@ class PHPWord
     /**
      * Adds a table style definition to styles.xml
      *
-     * @param $styleName string
-     * @param $styles array
+     * @param string $styleName
+     * @param array $styleTable
+     * @param array $styleFirstRow
      */
     public function addTableStyle($styleName, $styleTable, $styleFirstRow = null)
     {
@@ -219,8 +223,9 @@ class PHPWord
     /**
      * Adds a heading style definition to styles.xml
      *
-     * @param $titleCount int
-     * @param $styles array
+     * @param int $titleCount
+     * @param array $styleFont
+     * @param array $styleParagraph
      */
     public function addTitleStyle($titleCount, $styleFont, $styleParagraph = null)
     {
@@ -230,8 +235,8 @@ class PHPWord
     /**
      * Adds a hyperlink style to styles.xml
      *
-     * @param $styleName string
-     * @param $styles array
+     * @param string $styleName
+     * @param array $styles
      */
     public function addLinkStyle($styleName, $styles)
     {
@@ -252,17 +257,15 @@ class PHPWord
      *
      * @param string $strFilename
      * @return PHPWord_Template
+     * @throws Exception
      */
     public function loadTemplate($strFilename)
     {
         if (file_exists($strFilename)) {
             $template = new PHPWord_Template($strFilename);
             return $template;
-        } else {
-            throw new PHPWord_Exception(
-                "Template file {$strFilename} not found."
-            );
         }
+        throw new Exception("Template file {$strFilename} not found.");
     }
 
     /**

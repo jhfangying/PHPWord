@@ -22,7 +22,7 @@
  * @package    PHPWord
  * @copyright  Copyright (c) 2014 PHPWord
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    0.7.0
+ * @version    0.8.0
  */
 
 if (!defined('PHPWORD_BASE_PATH')) {
@@ -69,7 +69,7 @@ class PHPWord_Autoloader
     /**
      * Autoloader
      *
-     * @param string
+     * @param string $class
      */
     public static function autoload($class)
     {

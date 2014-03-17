@@ -22,7 +22,7 @@
  * @package    PHPWord
  * @copyright  Copyright (c) 2014 PHPWord
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    0.7.0
+ * @version    0.8.0
  */
 
 /**
@@ -158,11 +158,15 @@ class PHPWord_Section_Settings
     private $pageNumberingStart;
 
     /**
+     * Header height
+     *
      * @var int
      */
     private $headerHeight;
 
     /**
+     * Footer height
+     *
      * @var int
      */
     private $footerHeight;
@@ -594,6 +598,8 @@ class PHPWord_Section_Settings
     }
 
     /**
+     * Set page numbering start
+     *
      * @param null|int $pageNumberingStart
      * @return $this
      */
@@ -604,6 +610,8 @@ class PHPWord_Section_Settings
     }
 
     /**
+     * Get page numbering start
+     *
      * @return null|int
      */
     public function getPageNumberingStart()

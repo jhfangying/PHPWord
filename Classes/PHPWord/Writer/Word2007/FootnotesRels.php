@@ -2,7 +2,7 @@
 /**
  * PHPWord
  *
- * Copyright (c) 2011 PHPWord
+ * Copyright (c) 2014 PHPWord
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -20,14 +20,21 @@
  *
  * @category   PHPWord
  * @package    PHPWord
- * @copyright  Copyright (c) 010 PHPWord
+ * @copyright  Copyright (c) 2014 PHPWord
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    Beta 0.6.3, 08.07.2011
+ * @version    0.8.0
  */
 
-
+/**
+ * Class PHPWord_Writer_Word2007_FootnotesRels
+ */
 class PHPWord_Writer_Word2007_FootnotesRels extends PHPWord_Writer_Word2007_WriterPart
 {
+    /**
+     * Write footnotes relationships
+     *
+     * @param array $_relsCollection
+     */
     public function writeFootnotesRels($_relsCollection)
     {
         // Create XML writer
@@ -61,6 +68,15 @@ class PHPWord_Writer_Word2007_FootnotesRels extends PHPWord_Writer_Word2007_Writ
         return $objWriter->getData();
     }
 
+    /**
+     * Write individual relations
+     *
+     * @param PHPWord_Shared_XMLWriter $objWriter
+     * @param int $pId
+     * @param string $pType
+     * @param string $pTarget
+     * @param string $pTargetMode
+     */
     private function _writeRelationship(PHPWord_Shared_XMLWriter $objWriter = null, $pId = 1, $pType = '', $pTarget = '', $pTargetMode = '')
     {
         if ($pType != '' && $pTarget != '') {

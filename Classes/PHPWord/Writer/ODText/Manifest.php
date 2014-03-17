@@ -22,7 +22,7 @@
  * @package    PHPWord
  * @copyright  Copyright (c) 2014 PHPWord
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    0.7.0
+ * @version    0.8.0
  */
 
 /**
@@ -101,6 +101,7 @@ class PHPWord_Writer_ODText_Manifest extends PHPWord_Writer_ODText_WriterPart
                 $objWriter->endElement();
             }
         }
+        // @codeCoverageIgnoreEnd
 
         $objWriter->endElement();
 
@@ -112,9 +113,10 @@ class PHPWord_Writer_ODText_Manifest extends PHPWord_Writer_ODText_WriterPart
     /**
      * Get image mime type
      *
-     * @param    string $pFile Filename
-     * @return    string    Mime Type
-     * @throws    Exception
+     * @param   string $pFile Filename
+     * @return  string Mime Type
+     * @throws  Exception
+     * @codeCoverageIgnore Image is not yet handled by ODText
      */
     private function _getImageMimeType($pFile = '')
     {

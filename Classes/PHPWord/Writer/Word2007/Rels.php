@@ -22,7 +22,7 @@
  * @package    PHPWord
  * @copyright  Copyright (c) 2014 PHPWord
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    0.7.0
+ * @version    0.8.0
  */
 
 /**
@@ -30,7 +30,11 @@
  */
 class PHPWord_Writer_Word2007_Rels extends PHPWord_Writer_Word2007_WriterPart
 {
-
+    /**
+     * Write _rels/.rels
+     *
+     * @param PHPWord $pPHPWord
+     */
     public function writeRelationships(PHPWord $pPHPWord = null)
     {
         // Create XML writer

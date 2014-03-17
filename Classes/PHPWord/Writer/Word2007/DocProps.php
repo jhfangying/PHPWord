@@ -22,7 +22,7 @@
  * @package    PHPWord
  * @copyright  Copyright (c) 2014 PHPWord
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    0.7.0
+ * @version    0.8.0
  */
 
 /**
@@ -30,7 +30,12 @@
  */
 class PHPWord_Writer_Word2007_DocProps extends PHPWord_Writer_Word2007_WriterPart
 {
-
+    /**
+     * Write app.xml
+     *
+     * @param PHPWord $pPHPWord
+     * @return string XML data
+     */
     public function writeDocPropsApp(PHPWord $pPHPWord = null)
     {
         // Create XML writer
@@ -122,7 +127,12 @@ class PHPWord_Writer_Word2007_DocProps extends PHPWord_Writer_Word2007_WriterPar
         return $objWriter->getData();
     }
 
-
+    /**
+     * Write core.xml
+     *
+     * @param PHPWord $pPHPWord
+     * @return string XML data
+     */
     public function writeDocPropsCore(PHPWord $pPHPWord = null)
     {
         // Create XML writer

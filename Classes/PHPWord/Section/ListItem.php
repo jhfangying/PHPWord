@@ -22,7 +22,7 @@
  * @package    PHPWord
  * @copyright  Copyright (c) 2014 PHPWord
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    0.7.0
+ * @version    0.8.0
  */
 
 /**
@@ -58,8 +58,9 @@ class PHPWord_Section_ListItem
      *
      * @param string $text
      * @param int $depth
-     * @param mixed $styleText
+     * @param mixed $styleFont
      * @param mixed $styleList
+     * @param mixed $styleParagraph
      */
     public function __construct($text, $depth = 0, $styleFont = null, $styleList = null, $styleParagraph = null)
     {

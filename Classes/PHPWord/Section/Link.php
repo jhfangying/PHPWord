@@ -22,7 +22,7 @@
  * @package    PHPWord
  * @copyright  Copyright (c) 2014 PHPWord
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    0.7.0
+ * @version    0.8.0
  */
 
 /**
@@ -70,10 +70,10 @@ class PHPWord_Section_Link
     /**
      * Create a new Link Element
      *
-     * @var string $linkSrc
-     * @var string $linkName
-     * @var mixed $styleFont
-     * @var mixed $styleParagraph
+     * @param string $linkSrc
+     * @param string $linkName
+     * @param mixed $styleFont
+     * @param mixed $styleParagraph
      */
     public function __construct($linkSrc, $linkName = null, $styleFont = null, $styleParagraph = null)
     {

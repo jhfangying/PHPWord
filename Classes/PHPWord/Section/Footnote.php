@@ -22,7 +22,7 @@
  * @package    PHPWord
  * @copyright  Copyright (c) 2014 PHPWord
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    0.7.0
+ * @version    0.8.0
  */
 
 /**
@@ -54,6 +54,8 @@ class PHPWord_Section_Footnote
 
     /**
      * Create a new Footnote Element
+     *
+     * @param mixed $styleParagraph
      */
     public function __construct($styleParagraph = null)
     {
@@ -78,8 +80,8 @@ class PHPWord_Section_Footnote
     /**
      * Add a Text Element
      *
-     * @var string $text
-     * @var mixed $styleFont
+     * @param null|string $text
+     * @param mixed $styleFont
      * @return PHPWord_Section_Text
      */
     public function addText($text = null, $styleFont = null)

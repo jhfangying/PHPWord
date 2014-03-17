@@ -22,7 +22,7 @@
  * @package    PHPWord
  * @copyright  Copyright (c) 2014 PHPWord
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    0.7.0
+ * @version    0.8.0
  */
 
 /**
@@ -56,8 +56,10 @@ class PHPWord_Section_Footer_PreserveText
     /**
      * Create a new Preserve Text Element
      *
-     * @var string $text
-     * @var mixed $style
+     * @param string $text
+     * @param mixed $styleFont
+     * @param mixed $styleParagraph
+     * @return PHPWord_Section_Footer_PreserveText
      */
     public function __construct($text = null, $styleFont = null, $styleParagraph = null)
     {

@@ -22,28 +22,36 @@
  * @package    PHPWord
  * @copyright  Copyright (c) 2014 PHPWord
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    0.7.0
+ * @version    0.8.0
  */
+
+use PhpOffice\PhpWord\Exceptions\Exception;
 
 /**
  * PHPWord_Reader_Abstract
+ *
+ * @codeCoverageIgnore  Abstract class
  */
 abstract class PHPWord_Reader_Abstract implements PHPWord_Reader_IReader
 {
     /**
      * Read data only?
      *
-     * @var boolean
+     * @var bool
      */
     protected $readDataOnly = true;
 
+    /**
+     * File pointer
+     *
+     * @var bool|resource
+     */
     protected $fileHandle = true;
-
 
     /**
      * Read data only?
      *
-     * @return  boolean
+     * @return bool
      */
     public function getReadDataOnly()
     {
@@ -54,8 +62,8 @@ abstract class PHPWord_Reader_Abstract implements PHPWord_Reader_IReader
     /**
      * Set read data only
      *
-     * @param   boolean $pValue
-     * @return  PHPWord_Reader_IReader
+     * @param bool $pValue
+     * @return PHPWord_Reader_IReader
      */
     public function setReadDataOnly($pValue = true)
     {
@@ -67,29 +75,28 @@ abstract class PHPWord_Reader_Abstract implements PHPWord_Reader_IReader
      * Open file for reading
      *
      * @param string $pFilename
-     * @throws  PHPWord_Exception
      * @return resource
+     * @throws Exception
      */
     protected function openFile($pFilename)
     {
         // Check if file exists
         if (!file_exists($pFilename) || !is_readable($pFilename)) {
-            throw new PHPWord_Exception("Could not open " . $pFilename . " for reading! File does not exist.");
+            throw new Exception("Could not open " . $pFilename . " for reading! File does not exist.");
         }
 
         // Open file
         $this->fileHandle = fopen($pFilename, 'r');
         if ($this->fileHandle === false) {
-            throw new PHPWord_Exception("Could not open file " . $pFilename . " for reading.");
+            throw new Exception("Could not open file " . $pFilename . " for reading.");
         }
     }
 
     /**
      * Can the current PHPWord_Reader_IReader read the file?
      *
-     * @param   string      $pFilename
-     * @return boolean
-     * @throws PHPWord_Exception
+     * @param string $pFilename
+     * @return bool
      */
     public function canRead($pFilename)
     {
@@ -100,6 +107,6 @@ abstract class PHPWord_Reader_Abstract implements PHPWord_Reader_IReader
             return false;
         }
         fclose($this->fileHandle);
-        return $readable;
+        return true;
     }
 }

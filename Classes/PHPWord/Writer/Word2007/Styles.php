@@ -22,7 +22,7 @@
  * @package    PHPWord
  * @copyright  Copyright (c) 2014 PHPWord
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    0.7.0
+ * @version    0.8.0
  */
 
 /**
@@ -30,9 +30,18 @@
  */
 class PHPWord_Writer_Word2007_Styles extends PHPWord_Writer_Word2007_Base
 {
-
+    /**
+     * PHPWord object
+     *
+     * @var PHPWord
+     */
     private $_document;
 
+    /**
+     * Write styles
+     *
+     * @param PHPWord $pPHPWord
+     */
     public function writeStyles(PHPWord $pPHPWord = null)
     {
         // Create XML writer
@@ -181,6 +190,12 @@ class PHPWord_Writer_Word2007_Styles extends PHPWord_Writer_Word2007_Base
         return $objWriter->getData();
     }
 
+    /**
+     * Write style
+     *
+     * @param PHPWord_Shared_XMLWriter $objWriter
+     * @param PHPWord_Style_TableFull $style
+     */
     private function _writeFullTableStyle(PHPWord_Shared_XMLWriter $objWriter = null, PHPWord_Style_TableFull $style)
     {
 
@@ -302,6 +317,13 @@ class PHPWord_Writer_Word2007_Styles extends PHPWord_Writer_Word2007_Base
         }
     }
 
+    /**
+     * Write row style
+     *
+     * @param PHPWord_Shared_XMLWriter $objWriter
+     * @param string $type
+     * @param PHPWord_Style_TableFull $style
+     */
     private function _writeRowStyle(PHPWord_Shared_XMLWriter $objWriter = null, $type, PHPWord_Style_TableFull $style)
     {
         $brdSz = $style->getBorderSize();
@@ -362,7 +384,11 @@ class PHPWord_Writer_Word2007_Styles extends PHPWord_Writer_Word2007_Base
         $objWriter->endElement();
     }
 
-
+    /**
+     * Write doc defaults
+     *
+     * @param PHPWord_Shared_XMLWriter $objWriter
+     */
     private function _writeDocDefaults(PHPWord_Shared_XMLWriter $objWriter = null)
     {
         $fontName = $this->_document->getDefaultFontName();

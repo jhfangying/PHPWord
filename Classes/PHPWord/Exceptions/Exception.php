@@ -2,7 +2,7 @@
 /**
  * PHPWord
  *
- * Copyright (c) 2009 - 2010 PHPWord
+ * Copyright (c) 2014 PHPWord
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -22,28 +22,13 @@
  * @package    PHPWord
  * @copyright  Copyright (c) 2014 PHPWord
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    0.7.0
+ * @version    0.8.0
  */
+namespace PhpOffice\PhpWord\Exceptions;
 
 /**
- * Class PHPWord_Exception
+ * Class Exception
  */
-class PHPWord_Exception extends Exception
+class Exception extends \Exception
 {
-    /**
-     * Error handler callback
-     *
-     * @param mixed $code
-     * @param mixed $string
-     * @param mixed $file
-     * @param mixed $line
-     * @param mixed $context
-     */
-    public static function errorHandlerCallback($code, $string, $file, $line, $context)
-    {
-        $e = new self($string, $code);
-        $e->line = $line;
-        $e->file = $file;
-        throw $e;
-    }
 }

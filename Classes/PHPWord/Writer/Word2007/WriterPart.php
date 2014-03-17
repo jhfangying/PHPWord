@@ -22,7 +22,7 @@
  * @package    PHPWord
  * @copyright  Copyright (c) 2014 PHPWord
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    0.7.0
+ * @version    0.8.0
  */
 
 /**
@@ -30,13 +30,28 @@
  */
 abstract class PHPWord_Writer_Word2007_WriterPart
 {
+    /**
+     * Parent writer object
+     *
+     * @var PHPWord_Writer_Word2007
+     */
     private $_parentWriter;
 
+    /**
+     * Set parent writer
+     *
+     * @param PHPWord_Writer_IWriter
+     */
     public function setParentWriter(PHPWord_Writer_IWriter $pWriter = null)
     {
         $this->_parentWriter = $pWriter;
     }
 
+    /**
+     * Get parent writer
+     *
+     * @return PHPWord_Writer_IWriter
+     */
     public function getParentWriter()
     {
         if (!is_null($this->_parentWriter)) {
