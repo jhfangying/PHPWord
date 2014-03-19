@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://github.global.ssl.fastly.net/assets/github-9c0ec1654aa17ac751c2c3274ab0aa3cb4cc75ea.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://github.global.ssl.fastly.net/assets/github2-43c85266b41a94cc6a086312256ffbb8b0340a48.css" media="all" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="readme" class="clearfix announce instapaper_body md">
+    <span class="name">
+      <span class="octicon octicon-book"></span>
+      README.md
+    </span>
+
+    <article class="markdown-body entry-content" itemprop="mainContentOfPage"><h1>
+<a name="phpword" class="anchor" href="#phpword"><span class="octicon octicon-link"></span></a>PHPWord</h1>
+<p><strong>OpenXML - Read, Write and Create Word documents in PHP.</strong></p>
+
+<p>PHPWord is a library written in pure PHP and providing a set of classes that allow you to write to and read from different document file formats, like Word (.docx), WordPad (.rtf), Libre/OpenOffice Writer (.odt).</p>
+
+<p>No Windows operating system is needed for usage because the resulting DOCX, ODT, or RTF files can be opened by all major <a href="http://en.wikipedia.org/wiki/List_of_word_processors">word processing softwares</a>.</p>
+
+<p>PHPWord is an open source project licensed under <a href="/jhfangying/PHPWord/blob/master/license.md">LGPL</a>. PHPWord is unit tested to make sure that the released versions are stable.</p>
+
+<p><strong>Want to contribute?</strong> Fork us!</p>
+
+<h2>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>Set document properties, e.g. title, subject, and creator.</li>
+<li>Create document sections with different settings, e.g. portrait/landscape, page size, and page numbering</li>
+<li>Create header and footer for each sections</li>
+<li>Set default font type, font size, and paragraph style</li>
+<li>Use UTF-8 and East Asia fonts/characters</li>
+<li>Define custom font styles (e.g. bold, italic, color) and paragraph styles (e.g. centered, multicolumns, spacing) either as named style or inline in text</li>
+<li>Insert paragraphs, either as a simple text or complex one (a text run) that contains other elements</li>
+<li>Insert titles (headers) and table of contents</li>
+<li>Insert text breaks and page breaks</li>
+<li>Insert and format images, either local, remote, or as page watermarks</li>
+<li>Insert binary OLE Objects such as Excel or Visio</li>
+<li>Insert and format table with customized properties for each rows (e.g. repeat as header row) and cells (e.g. background color, rowspan, colspan)</li>
+<li>Insert list items as bulleted, numbered, or multilevel</li>
+<li>Insert hyperlinks</li>
+<li>Create document from templates</li>
+<li>Use XSL 1.0 style sheets to transform main document part of OOXML template</li>
+<li>... and many more features on progress</li>
+</ul><h2>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ul>
+<li>PHP 5.3+</li>
+<li>PHP <a href="http://php.net/manual/en/book.zip.php">Zip</a> extension</li>
+<li>PHP <a href="http://www.php.net/manual/en/xml.installation.php">XML Parser</a> extension</li>
+</ul><h2>
+<a name="optional-php-extensions" class="anchor" href="#optional-php-extensions"><span class="octicon octicon-link"></span></a>Optional PHP extensions</h2>
+
+<ul>
+<li><a href="http://php.net/manual/en/book.image.php">GD</a></li>
+<li><a href="http://php.net/manual/en/book.xmlwriter.php">XMLWriter</a></li>
+<li><a href="http://php.net/manual/en/book.xsl.php">XSL</a></li>
+</ul><h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>It is recommended that you install the PHPWord library <a href="http://getcomposer.org/">through composer</a>. To do so, add
+the following lines to your <code>composer.json</code>.</p>
+
+<div class="highlight highlight-json"><pre><span class="p">{</span>
+    <span class="nt">"require"</span><span class="p">:</span> <span class="p">{</span>
+       <span class="nt">"phpoffice/phpword"</span><span class="p">:</span> <span class="s2">"dev-master"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2>
+<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<p>We're reorganizing our documentation. Below are some of the most important things that you needed to get PHPWord creates document for you in no time.</p>
+
+<h3>
+<a name="table-of-contents" class="anchor" href="#table-of-contents"><span class="octicon octicon-link"></span></a>Table of contents</h3>
+
+<ol>
+<li>
+<a href="#basic-usage">Basic usage</a>
+
+<ul>
+<li><a href="#measurement-units">Measurement units</a></li>
+</ul>
+</li>
+<li>
+<a href="#sections">Sections</a>
+
+<ul>
+<li><a href="#section-settings">Section settings</a></li>
+<li><a href="#section-page-numbering">Section page numbering</a></li>
+</ul>
+</li>
+<li>
+<a href="#texts">Texts</a>
+
+<ul>
+<li><a href="#text-attributes">Attributes</a></li>
+</ul>
+</li>
+<li>
+<a href="#paragraph-style">Paragraph Style</a>
+
+<ul>
+<li><a href="#paragraph-style-attributes">Attributes</a></li>
+</ul>
+</li>
+<li>
+<a href="#tables">Tables</a>
+
+<ul>
+<li><a href="#tables-cell-style">Cell Style</a></li>
+</ul>
+</li>
+<li>
+<a href="#images">Images</a>
+
+<ul>
+<li><a href="#images-attributes">Attributes</a></li>
+</ul>
+</li>
+</ol><p><a name="basic-usage"></a></p>
+
+<h4>
+<a name="basic-usage" class="anchor" href="#basic-usage"><span class="octicon octicon-link"></span></a>Basic usage</h4>
+
+<p>The following is a basic example of the PHPWord library. More examples are provided in the <a href="/jhfangying/PHPWord/blob/master/samples">samples folder</a>.</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$PHPWord</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PHPWord</span><span class="p">();</span>
+
+<span class="c1">// Every element you want to append to the word document is placed in a section.</span>
+<span class="c1">// To create a basic section:</span>
+<span class="nv">$section</span> <span class="o">=</span> <span class="nv">$PHPWord</span><span class="o">-&gt;</span><span class="na">createSection</span><span class="p">();</span>
+
+<span class="c1">// After creating a section, you can append elements:</span>
+<span class="nv">$section</span><span class="o">-&gt;</span><span class="na">addText</span><span class="p">(</span><span class="s1">'Hello world!'</span><span class="p">);</span>
+
+<span class="c1">// You can directly style your text by giving the addText function an array:</span>
+<span class="nv">$section</span><span class="o">-&gt;</span><span class="na">addText</span><span class="p">(</span><span class="s1">'Hello world! I am formatted.'</span><span class="p">,</span>
+    <span class="k">array</span><span class="p">(</span><span class="s1">'name'</span><span class="o">=&gt;</span><span class="s1">'Tahoma'</span><span class="p">,</span> <span class="s1">'size'</span><span class="o">=&gt;</span><span class="mi">16</span><span class="p">,</span> <span class="s1">'bold'</span><span class="o">=&gt;</span><span class="k">true</span><span class="p">));</span>
+
+<span class="c1">// If you often need the same style again you can create a user defined style</span>
+<span class="c1">// to the word document and give the addText function the name of the style:</span>
+<span class="nv">$PHPWord</span><span class="o">-&gt;</span><span class="na">addFontStyle</span><span class="p">(</span><span class="s1">'myOwnStyle'</span><span class="p">,</span>
+    <span class="k">array</span><span class="p">(</span><span class="s1">'name'</span><span class="o">=&gt;</span><span class="s1">'Verdana'</span><span class="p">,</span> <span class="s1">'size'</span><span class="o">=&gt;</span><span class="mi">14</span><span class="p">,</span> <span class="s1">'color'</span><span class="o">=&gt;</span><span class="s1">'1B2232'</span><span class="p">));</span>
+<span class="nv">$section</span><span class="o">-&gt;</span><span class="na">addText</span><span class="p">(</span><span class="s1">'Hello world! I am formatted by a user defined style'</span><span class="p">,</span>
+    <span class="s1">'myOwnStyle'</span><span class="p">);</span>
+
+<span class="c1">// You can also put the appended element to local object like this:</span>
+<span class="nv">$fontStyle</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PHPWord_Style_Font</span><span class="p">();</span>
+<span class="nv">$fontStyle</span><span class="o">-&gt;</span><span class="na">setBold</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+<span class="nv">$fontStyle</span><span class="o">-&gt;</span><span class="na">setName</span><span class="p">(</span><span class="s1">'Verdana'</span><span class="p">);</span>
+<span class="nv">$fontStyle</span><span class="o">-&gt;</span><span class="na">setSize</span><span class="p">(</span><span class="mi">22</span><span class="p">);</span>
+<span class="nv">$myTextElement</span> <span class="o">=</span> <span class="nv">$section</span><span class="o">-&gt;</span><span class="na">addText</span><span class="p">(</span><span class="s1">'Hello World!'</span><span class="p">);</span>
+<span class="nv">$myTextElement</span><span class="o">-&gt;</span><span class="na">setFontStyle</span><span class="p">(</span><span class="nv">$fontStyle</span><span class="p">);</span>
+
+<span class="c1">// Finally, write the document:</span>
+<span class="nv">$objWriter</span> <span class="o">=</span> <span class="nx">PHPWord_IOFactory</span><span class="o">::</span><span class="na">createWriter</span><span class="p">(</span><span class="nv">$PHPWord</span><span class="p">,</span> <span class="s1">'Word2007'</span><span class="p">);</span>
+<span class="nv">$objWriter</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">(</span><span class="s1">'helloWorld.docx'</span><span class="p">);</span>
+</pre></div>
+
+<p><a name="measurement-units"></a></p>
+
+<h5>
+<a name="measurement-units" class="anchor" href="#measurement-units"><span class="octicon octicon-link"></span></a>Measurement units</h5>
+
+<p>The base length unit in Open Office XML is twip. Twip means "TWentieth of an Inch Point", i.e. 1 twip = 1/1440 inch.</p>
+
+<p>You can use PHPWord helper functions to convert inches, centimeters, or points to twips.</p>
+
+<div class="highlight highlight-php"><pre><span class="c1">// Paragraph with 6 points space after</span>
+<span class="nv">$PHPWord</span><span class="o">-&gt;</span><span class="na">addParagraphStyle</span><span class="p">(</span><span class="s1">'My Style'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'spaceAfter'</span> <span class="o">=&gt;</span> <span class="nx">PHPWord_Shared_Font</span><span class="o">::</span><span class="na">pointSizeToTwips</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
+<span class="p">);</span>
+
+<span class="nv">$section</span> <span class="o">=</span> <span class="nv">$PHPWord</span><span class="o">-&gt;</span><span class="na">createSection</span><span class="p">();</span>
+<span class="nv">$sectionStyle</span> <span class="o">=</span> <span class="nv">$section</span><span class="o">-&gt;</span><span class="na">getSettings</span><span class="p">();</span>
+<span class="c1">// half inch left margin</span>
+<span class="nv">$sectionStyle</span><span class="o">-&gt;</span><span class="na">setMarginLeft</span><span class="p">(</span><span class="nx">PHPWord_Shared_Font</span><span class="o">::</span><span class="na">inchSizeToTwips</span><span class="p">(</span><span class="o">.</span><span class="mi">5</span><span class="p">));</span>
+<span class="c1">// 2 cm right margin</span>
+<span class="nv">$sectionStyle</span><span class="o">-&gt;</span><span class="na">setMarginRight</span><span class="p">(</span><span class="nx">PHPWord_Shared_Font</span><span class="o">::</span><span class="na">centimeterSizeToTwips</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+</pre></div>
+
+<p><a name="sections"></a></p>
+
+<h4>
+<a name="sections" class="anchor" href="#sections"><span class="octicon octicon-link"></span></a>Sections</h4>
+
+<p>Every visible element in word is placed inside of a section. To create a section, use the following code:</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$section</span> <span class="o">=</span> <span class="nv">$PHPWord</span><span class="o">-&gt;</span><span class="na">createSection</span><span class="p">(</span><span class="nv">$sectionSettings</span><span class="p">);</span>
+</pre></div>
+
+<p>The <code>$sectionSettings</code> is an optional associative array that sets the section. Example:</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$sectionSettings</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'orientation'</span> <span class="o">=&gt;</span> <span class="s1">'landscape'</span><span class="p">,</span>
+    <span class="s1">'marginTop'</span> <span class="o">=&gt;</span> <span class="mi">600</span><span class="p">,</span>
+    <span class="s1">'colsNum'</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+
+<p><a name="section-settings"></a></p>
+
+<h5>
+<a name="section-settings" class="anchor" href="#section-settings"><span class="octicon octicon-link"></span></a>Section settings</h5>
+
+<p>Below are the available settings for section:</p>
+
+<ul>
+<li>
+<code>orientation</code> Page orientation, i.e. 'portrait' (default) or 'landscape'</li>
+<li>
+<code>marginTop</code> Page margin top in twips</li>
+<li>
+<code>marginLeft</code> Page margin left in twips</li>
+<li>
+<code>marginRight</code> Page margin right in twips</li>
+<li>
+<code>marginBottom</code> Page margin bottom in twips</li>
+<li>
+<code>borderTopSize</code> Border top size in twips</li>
+<li>
+<code>borderTopColor</code> Border top color</li>
+<li>
+<code>borderLeftSize</code> Border left size in twips</li>
+<li>
+<code>borderLeftColor</code> Border left color</li>
+<li>
+<code>borderRightSize</code> Border right size in twips</li>
+<li>
+<code>borderRightColor</code> Border right color</li>
+<li>
+<code>borderBottomSize</code> Border bottom size in twips</li>
+<li>
+<code>borderBottomColor</code> Border bottom color</li>
+<li>
+<code>headerHeight</code> Spacing to top of header</li>
+<li>
+<code>footerHeight</code> Spacing to bottom of footer</li>
+<li>
+<code>colsNum</code> Number of columns</li>
+<li>
+<code>colsSpace</code> Spacing between columns</li>
+<li>
+<code>breakType</code> Section break type (nextPage, nextColumn, continuous, evenPage, oddPage)</li>
+</ul><p>The following two settings are automatically set by the use of the <code>orientation</code> setting. You can alter them but that's not recommended.</p>
+
+<ul>
+<li>
+<code>pageSizeW</code> Page width in twips</li>
+<li>
+<code>pageSizeH</code> Page height in twips</li>
+</ul><p><a name="section-page-numbering"></a></p>
+
+<h5>
+<a name="section-page-numbering" class="anchor" href="#section-page-numbering"><span class="octicon octicon-link"></span></a>Section page numbering</h5>
+
+<p>You can change a section page numbering.</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$section</span> <span class="o">=</span> <span class="nv">$PHPWord</span><span class="o">-&gt;</span><span class="na">createSection</span><span class="p">();</span>
+<span class="nv">$section</span><span class="o">-&gt;</span><span class="na">getSettings</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">setPageNumberingStart</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+
+<p><a name="texts"></a></p>
+
+<h4>
+<a name="texts" class="anchor" href="#texts"><span class="octicon octicon-link"></span></a>Texts</h4>
+
+<p>Text can be added by using <code>addText</code> and <code>createTextRun</code> method. <code>addText</code> is used for  creating simple paragraphs that only contain texts with the same style. <code>createTextRun</code> is used for creating complex paragraphs that contain text with different style (some bold, other italics, etc) or other elements, e.g. images or links.</p>
+
+<p><code>addText</code> sample:</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$fontStyle</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Times New Roman'</span><span class="p">,</span> <span class="s1">'size'</span> <span class="o">=&gt;</span> <span class="mi">9</span><span class="p">);</span>
+<span class="nv">$paragraphStyle</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">'align'</span> <span class="o">=&gt;</span> <span class="s1">'both'</span><span class="p">);</span>
+<span class="nv">$section</span><span class="o">-&gt;</span><span class="na">addText</span><span class="p">(</span><span class="s1">'I am simple paragraph'</span><span class="p">,</span> <span class="nv">$fontStyle</span><span class="p">,</span> <span class="nv">$paragraphStyle</span><span class="p">);</span>
+</pre></div>
+
+<p><code>createTextRun</code> sample:</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$textrun</span> <span class="o">=</span> <span class="nv">$section</span><span class="o">-&gt;</span><span class="na">createTextRun</span><span class="p">();</span>
+<span class="nv">$textrun</span><span class="o">-&gt;</span><span class="na">addText</span><span class="p">(</span><span class="s1">'I am bold'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'bold'</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">));</span>
+<span class="nv">$textrun</span><span class="o">-&gt;</span><span class="na">addText</span><span class="p">(</span><span class="s1">'I am italic, array('</span><span class="nx">italic</span><span class="s1">' =&gt; true));</span>
+<span class="s1">$textrun-&gt;addText('</span><span class="nx">I</span> <span class="nx">am</span> <span class="nx">colored</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'color'</span> <span class="o">=&gt;</span> <span class="s1">'AACC00'</span><span class="p">));</span>
+</pre></div>
+
+<p><a name="text-attributes"></a></p>
+
+<h5>
+<a name="attributes" class="anchor" href="#attributes"><span class="octicon octicon-link"></span></a>Attributes</h5>
+
+<ul>
+<li>
+<code>size</code> text size, e.g. <em>20</em>, <em>22</em>,</li>
+<li>
+<code>name</code> font name, e.g. <em>Arial</em>
+</li>
+<li>
+<code>bold</code> text is bold, <em>true</em> or <em>false</em>
+</li>
+<li>
+<code>italic</code> text is italic, <em>true</em> or <em>false</em>
+</li>
+<li>
+<code>superScript</code> text is super script, <em>true</em> or <em>false</em>
+</li>
+<li>
+<code>subScript</code> text is sub script, <em>true</em> or <em>false</em>
+</li>
+<li>
+<code>underline</code> text is underline, <em>true</em> or <em>false</em>
+</li>
+<li>
+<code>strikethrough</code> text is strikethrough, <em>true</em> or <em>false</em>
+</li>
+<li>
+<code>color</code> text color, e.g. <em>FF0000</em>
+</li>
+<li>
+<code>fgColor</code> fgColor</li>
+<li>
+<code>line-height</code> text line height, e.g. <em>1.0</em>, <em>1.5</em>, ect...</li>
+</ul><p><a name="paragraph-style"></a></p>
+
+<h4>
+<a name="paragraph-style" class="anchor" href="#paragraph-style"><span class="octicon octicon-link"></span></a>Paragraph Style</h4>
+
+<p><a name="paragraph-style-attributes"></a></p>
+
+<h5>
+<a name="attributes-1" class="anchor" href="#attributes-1"><span class="octicon octicon-link"></span></a>Attributes</h5>
+
+<ul>
+<li>
+<code>line-height</code> text line height, e.g. <em>1.0</em>, <em>1.5</em>, ect...</li>
+<li>
+<code>align</code> paragraph alignment, <em>left</em>, <em>right</em> or <em>center</em>
+</li>
+<li>
+<code>spaceBefore</code> space before Paragraph</li>
+<li>
+<code>spaceAfter</code> space after Paragraph</li>
+<li>
+<code>tabs</code> set of Custom Tab Stops</li>
+<li>
+<code>indent</code> indent by how much</li>
+</ul><p><a name="tables"></a></p>
+
+<h4>
+<a name="tables" class="anchor" href="#tables"><span class="octicon octicon-link"></span></a>Tables</h4>
+
+<p>The following illustrates how to create a table.</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$table</span> <span class="o">=</span> <span class="nv">$section</span><span class="o">-&gt;</span><span class="na">addTable</span><span class="p">();</span>
+<span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addRow</span><span class="p">();</span>
+<span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addCell</span><span class="p">();</span>
+</pre></div>
+
+<p><a name="tables-cell-style"></a></p>
+
+<h5>
+<a name="cell-style" class="anchor" href="#cell-style"><span class="octicon octicon-link"></span></a>Cell Style</h5>
+
+<h6>
+<a name="cell-span" class="anchor" href="#cell-span"><span class="octicon octicon-link"></span></a>Cell Span</h6>
+
+<p>You can span a cell on multiple columms.</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$cell</span> <span class="o">=</span> <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">addCell</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+<span class="nv">$cell</span><span class="o">-&gt;</span><span class="na">getStyle</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">setGridSpan</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+</pre></div>
+
+<p><a name="images"></a></p>
+
+<h4>
+<a name="images" class="anchor" href="#images"><span class="octicon octicon-link"></span></a>Images</h4>
+
+<p>You can add images easily using the following example.</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$section</span> <span class="o">=</span> <span class="nv">$PHPWord</span><span class="o">-&gt;</span><span class="na">createSection</span><span class="p">();</span>
+<span class="nv">$section</span><span class="o">-&gt;</span><span class="na">addImage</span><span class="p">(</span><span class="s1">'mars.jpg'</span><span class="p">);</span>
+</pre></div>
+
+<p><a name="images-attributes"></a></p>
+
+<h5>
+<a name="attributes-2" class="anchor" href="#attributes-2"><span class="octicon octicon-link"></span></a>Attributes</h5>
+
+<ul>
+<li>
+<code>width</code> width in pixels</li>
+<li>
+<code>height</code> height in pixels</li>
+<li>
+<code>align</code> image alignment, <em>left</em>, <em>right</em> or <em>center</em>
+</li>
+<li>
+<code>marginTop</code> top margin in inches, can be negative</li>
+<li>
+<code>marginLeft</code> left margin in inches, can be negative</li>
+<li>
+<code>wrappingStyle</code> can be <em>inline</em>, <em>square</em>, <em>tight</em>, <em>behind</em>, <em>infront</em>
+</li>
+</ul><p>To add an image with attributes, consider the following example.</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$section</span><span class="o">-&gt;</span><span class="na">addImage</span><span class="p">(</span>
+    <span class="s1">'mars.jpg'</span><span class="p">,</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'width'</span> <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="s1">'height'</span> <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="s1">'marginTop'</span> <span class="o">=&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="s1">'marginLeft'</span> <span class="o">=&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="s1">'wrappingStyle'</span> <span class="o">=&gt;</span> <span class="s1">'behind'</span>
+    <span class="p">)</span>
+<span class="p">);</span>
+</pre></div></article>
+  </div>
+</body>
+</html>
